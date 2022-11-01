@@ -42,8 +42,9 @@ for mention in mentions:
                     originalID = mention.id
                     intro1 = searchTerms + "has been mentioned in " + str(searchTermFound) + " tweets out of " + str(numTweets) + " tweets."
                     intro2 = "\nTop 3 most liked matching tweets: "
-                    for tweet in matchingTweets[0:1]:
+                    for tweet in matchingTweets[0:3]:
                         reply = potentialHandle + " : " + tweet.text + ", " + str(tweet.favorite_count)
+                        api.update_status(status=reply, in_reply_to_status_id=originalID, auto_populate_reply_metadata=True)
                     #api.update_status(status=("@" + mention.user.name + " " + intro1+intro2+reply), in_reply_to_status_id=originalID)
                     api.update_status(status=reply, in_reply_to_status_id=originalID, auto_populate_reply_metadata=True)
 
